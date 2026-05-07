@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+
+$error = $_SESSION['error_login'] ?? '';
+
+unset($_SESSION['error_login']);
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -20,35 +30,76 @@
 </head>
 
 <body>
+
     <div class="login-container">
+
         <div class="login-card">
+
             <div class="logo">
                 <img src="../imagenes/icono.png" alt="">
             </div>
+
             <h1>
                 Agenda Pro
             </h1>
+
             <p class="subtitulo">
                 Sistema básico de agenda de contactos
             </p>
-            <form>
-                <div class="input-group">
-                    <label>
-                        Usuario
-                    </label>
-                    <input type="text" placeholder="Ingrese usuario">
+
+            <?php if (!empty($error)): ?>
+
+                <div class="error">
+                    <?= $error ?>
                 </div>
+
+            <?php endif; ?>
+
+            <form 
+                method="POST" 
+                action="../controller/UsuarioController.php?accion=login"
+            >
+
                 <div class="input-group">
+
+                    <label>
+                        Correo
+                    </label>
+
+                    <input 
+                        type="email"
+                        name="correo"
+                        placeholder="Ingrese correo"
+                        required
+                    >
+
+                </div>
+
+                <div class="input-group">
+
                     <label>
                         Contraseña
                     </label>
-                    <input type="password" placeholder="Ingrese contraseña">
+
+                    <input 
+                        type="password"
+                        name="clave"
+                        placeholder="Ingrese contraseña"
+                        required
+                    >
+
                 </div>
+
                 <button type="submit">
                     Ingresar
                 </button>
+
             </form>
+
         </div>
+
     </div>
+
 </body>
+
 </html>
