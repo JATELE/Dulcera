@@ -11,7 +11,7 @@
     <meta name="keywords" content="agenda, contactos, organizacion">
     <meta name="author" content="JSON">
 
-    <link rel="stylesheet" href="../assetes/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 
     <link rel="icon" href="../imagenes/icono.png">
 
@@ -23,7 +23,7 @@
     <div class="login-container">
         <div class="login-card">
             <div class="logo">
-                📒
+                <img src="../imagenes/icono.png" alt="">
             </div>
             <h1>
                 Agenda Pro
