@@ -3,7 +3,7 @@
 class DataBase {
 
     private string $host = 'localhost';
-    private string $db = 'agenda_pro';
+    private string $db = 'Dulcera';
     private string $user = 'root';
     private string $pass = '';
     private string $charset = 'utf8mb4';

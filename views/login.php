@@ -1,104 +1,110 @@
 <?php
-
 session_start();
 
+if (isset($_SESSION['usuario'])) {
+    header('Location: home.php');
+    exit;
+}
+
 $error = $_SESSION['error_login'] ?? '';
-
 unset($_SESSION['error_login']);
-
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="robots" content="index, follow">
-    <meta name="description" content="Agenda de contactos">
-    <meta name="keywords" content="agenda, contactos, organizacion">
-    <meta name="author" content="JSON">
+    <title>Login | Dulcera Doña Solina</title>
 
     <link rel="stylesheet" href="../assets/css/style.css">
-
-    <link rel="icon" href="../imagenes/icono.png">
-
-    <title>Agenda Pro</title>
-
+    <link rel="icon" href="../imagenes/dulces.png">
 </head>
 
-<body>
+<body class="login-page">
 
     <div class="login-container">
 
-        <div class="login-card">
+        <div class="login-wrapper">
 
-            <div class="logo">
-                <img src="../imagenes/icono.png" alt="">
+            <div class="login-banner">
+                <div class="overlay"></div>
             </div>
 
-            <h1>
-                Agenda Pro
-            </h1>
+            <div class="login-card">
 
-            <p class="subtitulo">
-                Sistema básico de agenda de contactos
-            </p>
+                <h1>HELLO!</h1>
 
-            <?php if (!empty($error)): ?>
+                <p class="subtitulo">
+                    Inicia sesión para ingresar al sistema
+                </p>
 
-                <div class="error">
-                    <?= $error ?>
-                </div>
+                <?php if (!empty($error)): ?>
+                    <div class="error">
+                        <?= $error ?>
+                    </div>
+                <?php endif; ?>
 
-            <?php endif; ?>
+                <form method="POST" action="../controller/UsuarioController.php?accion=login">
 
-            <form 
-                method="POST" 
-                action="../controller/UsuarioController.php?accion=login"
-            >
+                    <div class="input-group">
+                        <input type="email" name="correo" placeholder="Correo electrónico" required>
+                    </div>
 
-                <div class="input-group">
+                    <div class="input-group">
+                        <input type="password" name="clave" id="clave" placeholder="Contraseña" required>
+                    </div>
 
-                    <label>
-                        Correo
-                    </label>
+                    <div class="show-password">
+                        <label>
+                            <input type="checkbox" onclick="togglePassword()">
+                            Mostrar contraseña
+                        </label>
+                    </div>
 
-                    <input 
-                        type="email"
-                        name="correo"
-                        placeholder="Ingrese correo"
-                        required
-                    >
+                    <div class="login-options">
+                        <label>
+                            <input type="checkbox" name="remember">
+                            Remember
+                        </label>
 
-                </div>
+                        <a href="#">
+                            Forgot your password?
+                        </a>
+                    </div>
 
-                <div class="input-group">
+                    <button type="submit">
+                        NEXT →
+                    </button>
 
-                    <label>
-                        Contraseña
-                    </label>
+                    <a class="create-account" href="#">
+                        Create account
+                    </a>
 
-                    <input 
-                        type="password"
-                        name="clave"
-                        placeholder="Ingrese contraseña"
-                        required
-                    >
+                </form>
 
-                </div>
+            </div>
 
-                <button type="submit">
-                    Ingresar
-                </button>
 
-            </form>
 
+        </div>
+        <div class="credit-login">
+            designed by Jatele
         </div>
 
     </div>
+
+    <script>
+        function togglePassword() {
+            const input = document.getElementById("clave");
+
+            if (input.type === "password") {
+                input.type = "text";
+            } else {
+                input.type = "password";
+            }
+        }
+    </script>
 
 </body>
 
